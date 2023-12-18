@@ -1,11 +1,14 @@
 ﻿using Application.Events;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class EventsController : BaseApiController
     {
+        
         [HttpGet]
         public async Task<ActionResult<List<Event>>> GetEvents()
         {
