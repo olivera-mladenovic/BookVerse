@@ -68,8 +68,6 @@ namespace API.Controllers
         [HttpGet("me")]
         public async Task<ActionResult<UserDTO>> GetMe()
         {
-
-
             var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
 
             return new UserDTO

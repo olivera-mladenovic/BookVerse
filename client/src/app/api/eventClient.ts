@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { Event } from "../models";
+import { store } from "../stores";
 
 export class EventClient {
     private client: AxiosInstance;
@@ -11,6 +12,12 @@ export class EventClient {
                 Accept: 'application/json',
                 "Content-Type": 'application/json'
             }
+        })
+
+        this.client.interceptors.request.use(config => {
+            const token = store.accountStore.token;
+            config.headers.Authorization = `Bearer ${token}`;
+            return config;
         })
     }
 
