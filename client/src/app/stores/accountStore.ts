@@ -4,7 +4,7 @@ import { AccountClient } from "../api/accountClient";
 
 export class AccountStore {
     user: User | null = null;
-    token: string | undefined = undefined;
+    token: string | null = localStorage.getItem('token');
     client: AccountClient;
     
     constructor() {
@@ -32,7 +32,12 @@ export class AccountStore {
     }
 
     logout = () => {
-        this.token = undefined;
+        this.token = null;
         this.user = null;
     }
+
+    register = async (creds: {email: string, password: string, username: string, displayName: string, about: string}) => {
+        const user = await this.client.register(creds);
+        runInAction(() => {this.user = user; this.token = user.token});
+}
 }

@@ -18,4 +18,9 @@ export class AccountClient {
         const userResp = await this.client.post('/login', userValues);
         return userResp.data;
     }
+
+    public async register(userValues: {email: string, password: string, username: string, displayName: string, about: string}): Promise<User> {
+        const userResp = await this.client.post('/register', userValues);
+        return userResp.data;
+    }
 }
