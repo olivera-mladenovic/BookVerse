@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections;
 
 namespace Domain
 {
@@ -6,5 +7,6 @@ namespace Domain
     {
         public string DisplayName { get; set; }
         public string? About { get; set; }
+        public ICollection<Event> Events { get; set; }
     }
 }

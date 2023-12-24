@@ -7,9 +7,9 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context, UserManager<User> userManager)
         {
-            var usersE = userManager.Users.ToList();
-            if (!userManager.Users.Any())
+            if (!userManager.Users.Any() && !context.Events.Any())
             {
+
                 var users = new List<User>
                 {
                     new User
@@ -30,14 +30,10 @@ namespace Persistence
 
                 foreach (var user in users)
                 {
-                    var result = await userManager.CreateAsync(user, "Password!");
-                    Console.WriteLine(result);
+                    await userManager.CreateAsync(user, "Password!");
                 }
-            }
 
-            if (context.Events.Any()) return;
-
-            var events = new List<Event>
+                var events = new List<Event>
             {
                 new Event
                 {
@@ -49,6 +45,7 @@ namespace Persistence
                     Venue = "Pub",
                     Capacity = 10,
                     SocialMediaLink = "https://www.google.com/",
+                    Guests = users
                 },
                 new Event
                 {
@@ -129,8 +126,10 @@ namespace Persistence
                 }
             };
 
-            await context.Events.AddRangeAsync(events);
-            await context.SaveChangesAsync();
+                await context.Events.AddRangeAsync(events);
+                await context.SaveChangesAsync();
+            }
         }
+        
     }
 }

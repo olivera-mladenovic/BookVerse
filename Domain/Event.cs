@@ -1,4 +1,6 @@
 ﻿
+using System.Collections;
+
 namespace Domain
 {
     public class Event
@@ -12,5 +14,7 @@ namespace Domain
         public int Capacity { get; set; }
         public string SocialMediaLink { get; set; }
         public string Type { get; set; }
+
+        public ICollection<User> Guests { get; set; } = new List<User>();
     }
 }

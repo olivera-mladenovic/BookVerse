@@ -19,7 +19,8 @@ namespace Application.Events
             }
             public async Task<List<Event>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Events.ToListAsync();
+                var events = await _context.Events.Include(e=> e.Guests).ToListAsync();
+                return events;
             }
         }
     }

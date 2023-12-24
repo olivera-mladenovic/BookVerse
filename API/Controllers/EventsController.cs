@@ -21,6 +21,14 @@ namespace API.Controllers
             return await Mediator.Send(new Details.Query { Id = id});
         }
 
+        [HttpPost("{id}/attend")]
+        public async Task<IActionResult> Attend(Guid id)
+        {
+            await Mediator.Send(new AddRemoveGuest.Command { Id = id });
+            return Ok();
+
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateEvent(Event e)
         {
@@ -38,10 +46,11 @@ namespace API.Controllers
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEvent(Guid id)
-        {
-            
+        {            
             await Mediator.Send(new Delete.Command { Id = id });
             return Ok();
         }
+
+      
     }
 }
