@@ -1,3 +1,5 @@
+import { User } from "."
+
 export interface Event {
     id: string
     name: string
@@ -8,4 +10,5 @@ export interface Event {
     capacity: number
     socialMediaLink: string
     type: string
+    guests: User[]
   }

@@ -23,4 +23,9 @@ export class AccountClient {
         const userResp = await this.client.post('/register', userValues);
         return userResp.data;
     }
+
+    public async getMe():Promise<User> {
+        const userResp = await this.client.get('/me');
+        return userResp.data;
+    }
 }

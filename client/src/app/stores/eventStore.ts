@@ -1,7 +1,6 @@
 
-import { makeAutoObservable } from "mobx";
-import { Event } from "../models";
-
+import { makeAutoObservable, runInAction } from "mobx";
+import { Event, User } from "../models";
 import { EventClient } from "../api";
 
 export class EventStore {
@@ -24,5 +23,18 @@ export class EventStore {
 
     selectEvent = (id:string) => {
         this.selectedEvent = this.events.find(e => e.id === id);
+    }
+
+    updateAttendance = async(currentUser: User) => {
+        await this.client.updateAttendance(this.selectedEvent!.id);
+       
+            runInAction(()=> {
+                if (this.selectedEvent!.guests.map(g=> g.username).includes(currentUser.username)) {
+                    this.selectedEvent!.guests = this.selectedEvent!.guests.filter(u=> u.username !== currentUser.username);
+                } else {
+                    this.selectedEvent!.guests.push(currentUser);
+                }
+            })
+       
     }
 }

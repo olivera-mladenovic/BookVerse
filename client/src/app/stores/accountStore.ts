@@ -39,5 +39,5 @@ export class AccountStore {
     register = async (creds: {email: string, password: string, username: string, displayName: string, about: string}) => {
         const user = await this.client.register(creds);
         runInAction(() => {this.user = user; this.token = user.token});
-}
+    }
 }

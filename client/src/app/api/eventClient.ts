@@ -30,4 +30,9 @@ export class EventClient {
         const resp = await this.client.get<Event>(`/events/${id}`);
         return resp.data;
     }
+
+    public async updateAttendance(id:string) {
+        await this.client.post(`/events/${id}/attend`);
+        return;
+    }
 }
