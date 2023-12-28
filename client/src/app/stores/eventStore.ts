@@ -25,6 +25,14 @@ export class EventStore {
         this.selectedEvent = this.events.find(e => e.id === id);
     }
 
+    deleteEvent = async (id: string) => {
+        await this.client.deleteEvent(id);
+        runInAction(()=> {
+            if (this.selectedEvent?.id === id) this.selectedEvent = undefined; 
+            this.events = this.events.filter(e=> e.id !== id);
+        })
+    }
+
     updateAttendance = async(currentUser: User) => {
         await this.client.updateAttendance(this.selectedEvent!.id);
        
@@ -35,6 +43,5 @@ export class EventStore {
                     this.selectedEvent!.guests.push(currentUser);
                 }
             })
-       
     }
 }

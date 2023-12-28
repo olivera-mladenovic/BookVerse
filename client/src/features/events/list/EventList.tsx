@@ -26,6 +26,7 @@ export default observer(function EventList() {
                             </Item.Description>
                             <Item.Extra>
                                 <Button floated="right" content='View' color="brown" circular onClick={()=>eventStore.selectEvent(e.id)}/>
+                                <Button floated="right" content='Delete' color="red" circular onClick={()=>eventStore.deleteEvent(e.id)}/>
                                 <Label basic content={e.type} active color="brown" icon="book" circular/>
                             </Item.Extra>
 
