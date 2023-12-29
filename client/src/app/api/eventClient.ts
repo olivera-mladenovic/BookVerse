@@ -40,4 +40,9 @@ export class EventClient {
         await this.client.delete(`/events/${id}`);
         return;
     }
+
+    public async createEvent(event: Event) {
+        await this.client.post('/events', event);
+        return;
+    }
 }

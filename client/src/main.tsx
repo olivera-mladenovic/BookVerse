@@ -8,6 +8,7 @@ import LoginScreen from './features/account/LoginScreen'
 import RegisterScreen from './features/account/RegisterScreen'
 import HomeScreen from './features/account/HomeScreen'
 import App from './app/layout/App'
+import CreateEventScreen from './features/events/screens/CreateEventScreen'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path='/login' element={<LoginScreen/>}></Route>
           <Route path='/register' element={<RegisterScreen/>}></Route>
           <Route path='/events' element={<App/>}></Route>
+          <Route path='/create-event' element={<CreateEventScreen/>}></Route>
           <Route path='*' element={<HomeScreen/>}></Route>
         </Routes>
       </BrowserRouter>

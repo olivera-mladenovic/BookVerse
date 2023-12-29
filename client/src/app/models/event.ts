@@ -1,5 +1,4 @@
 import { User } from "."
-
 export interface Event {
     id: string
     name: string

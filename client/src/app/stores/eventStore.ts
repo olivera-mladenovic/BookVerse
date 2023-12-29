@@ -2,6 +2,7 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { Event, User } from "../models";
 import { EventClient } from "../api";
+import {v4 as uuid} from 'uuid';
 
 export class EventStore {
     client: EventClient;
@@ -35,7 +36,6 @@ export class EventStore {
 
     updateAttendance = async(currentUser: User) => {
         await this.client.updateAttendance(this.selectedEvent!.id);
-       
             runInAction(()=> {
                 if (this.selectedEvent!.guests.map(g=> g.username).includes(currentUser.username)) {
                     this.selectedEvent!.guests = this.selectedEvent!.guests.filter(u=> u.username !== currentUser.username);
@@ -44,4 +44,13 @@ export class EventStore {
                 }
             })
     }
+
+    createEvent = async (event: Event) => {
+        event.id = uuid();
+        try {
+            await this.client.createEvent(event);
+        } catch(e) {
+            console.log(e);
+        }
+    } 
 }
