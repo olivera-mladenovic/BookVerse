@@ -8,6 +8,8 @@ export interface Event {
     venue: string
     capacity: number
     socialMediaLink: string
-    type: string
+    type: EventType
     guests: User[]
-  }
+}
+
+type EventType = 'Book club meeting' | 'Book launch party' | 'Literary Festival' | 'Author meet and greet';

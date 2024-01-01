@@ -18,7 +18,7 @@ export default observer(function EventList() {
                     <Item key={e.id}>
                         <Item.Content>
                             <Item.Header as='a'>{e.name}</Item.Header>
-                            <Item.Meta>{e.date}</Item.Meta>
+                            <Item.Meta>Date: {new Date(e.date).toDateString()}. Time: {new Date(e.date).toLocaleTimeString()}</Item.Meta>
                             <Item.Description>
                                     <div>{e.description}</div>
                                     <div>{e.city}, {e.venue}</div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Icon, Image, Segment } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores';
 import { observer } from 'mobx-react-lite';
+import { Images } from './utils';
 
 export default observer(function EventDetails() {
     const {eventStore, accountStore} = useStore();
@@ -12,16 +13,16 @@ export default observer(function EventDetails() {
     }
 
     const buttonText = amIGoing() ? 'Cancel attendance' : 'Attend'
-
+    const img = selectedEvent?.type ? Images[selectedEvent.type] : '/assets/logo.svg';
     return (
         selectedEvent && <div>
             <Segment floated='right'>
             <Card>
-        <Image src='/assets/logo.png' wrapped ui={false} />
+        <Image src={img} wrapped ui={false} />
         <Card.Content>
             <Card.Header>{selectedEvent.name}</Card.Header>
             <Card.Meta>
-            <span className='date'>{selectedEvent.date}</span>
+            <span className='date'>Date: {new Date(selectedEvent.date).toDateString()}. Time: {new Date(selectedEvent.date).toLocaleTimeString()}</span>
             </Card.Meta>
             <Card.Description>
             {selectedEvent.description}
