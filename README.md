@@ -32,4 +32,6 @@ Frontend aplikacija je realizovana putem komponenti, koje su implementirane reac
 React ne forsira nijedan način strukturisanja fajlova, ali postoje određene preporuke koje je potrebno pratiti radi lakšeg razumevanja projekta i bržeg snalaženja među fajlovima. Na starijoj verziji react dokumentacije, mogu se naći takve preporuke ([link](https://legacy.reactjs.org/docs/faq-structure.html)). U ovoj aplikaciji, korišćena je struktura grupisanja fajlovima prema karakteristikama (***feature-based***)
 
 ## Kratki  pregled aplikacije
-<video src='bookverse-preview.mp4' width="50%"/>
+
+https://github.com/olivera-mladenovic/BookVerse/assets/45879474/ed385811-b9cc-4737-9ef6-68658a728c26
+
